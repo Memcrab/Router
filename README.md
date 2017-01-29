@@ -1,5 +1,10 @@
-PHP Router as Composer Library [![Build Status](https://travis-ci.org/noonehos/router.svg?branch=master)]
+PHP Router as Composer Library 
 ==========================
+### Status
+[![Build Status](https://travis-ci.org/noonehos/router.png)](https://travis-ci.org/noonehos/router)
+
+
+[![Build Status](https://travis-ci.org/noonehos/router.svg?branch=master)]
 It's php router based on yaml configuration file and support regular expressions in each route condition. 
 Thats help build more accurate routes with only numbers in part of url or with required part of word etc.
 
