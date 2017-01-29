@@ -1,0 +1,16 @@
+routes:
+  root:
+    GET: [Index, getMain]
+    routes:
+      post:
+        GET: [Post, get]
+        POST: [Post, add]
+        PATCH: [Post, save]
+        DELETE: [Post, delete]
+        routes:
+          publish: 
+            POST: [Post, setPublishing]
+      catalog:
+        routes:
+          ([a-zA-Z0-9]+)-([a-zA-Z0-9]+): 
+            GET: [Catalog, filter, key1, values1]

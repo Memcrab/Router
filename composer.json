@@ -1,0 +1,25 @@
+{
+    "name": "memCrab/router",
+    "description": "Tool for memCrab Core API",
+    "keywords": ["router", "composer", "package"],
+    "license": "DBAD",
+    "authors": [
+        {
+            "name": "Oleksandr Diudiun",
+            "email": "a.diudiun@gmail.com"
+        }
+    ],
+    "type": "project",
+    "require": {
+		"php": ">=7.0",
+        "ext-yaml": ">=2.0.0"
+    },
+	"require-dev": {
+		"phpunit/phpunit": "5.2.*"
+    },
+	"autoload": {
+        "psr-4": {
+            "memCrab\\Router\\": "src/"
+        }
+    }
+}
