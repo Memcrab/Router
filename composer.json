@@ -12,9 +12,8 @@
     "type": "package",
     "repositories": [
         {
-            "type": "git",
-            "url": "git://github.com/noonehos/router",
-            "reference": "master"
+            "type": "vcs",
+            "url": "https://github.com/noonehos/router"
         }
     ],
     "require": {
