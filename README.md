@@ -21,3 +21,12 @@ Features
 Install
 --------
 `composer install memcrab/router`
+
+## TODOS
+
+- [ ] Add support for suffixes - right part of uri that not involved in routing like .html, .php, last "/", etc
+- [ ] Add support for prefixes - left part of uri that not involved in routing like lang part (uk/us/fr/ru) or geo part (europe/asia), etc
+
+---
+
+**MIT Licensed**
