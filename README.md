@@ -30,7 +30,18 @@ Dependencies
 
 Usage
 --------
-- `new \memCrab\Router("path/to/yaml/file", "ErrorClassName");`
+- init Router with: `memCrab\Router(string $filePath, string $errorServiceName)`
+-- $filePath - Path to yaml files with routes
+-- $errorServiceName - Class that will run on any exception
+- run matching: `matchRoute(string $url, string $method)`
+-- $url - URL or request URI of page
+-- $method - http request method
+- use your router data with:
+-- getService() - return component that we call
+-- getAction() - return action that will be run from component
+-- getParams() - return route regExp params
+-- getErrorMessage() - return error message of internal exception
+-- getErrorServiceName() - return error Class that will run on any exception
 
 Simple Example
 --------
