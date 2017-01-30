@@ -3,8 +3,11 @@ PHP Router as Composer Library
 ### Status
 [![Build Status](https://travis-ci.org/noonehos/router.svg?branch=master)](https://travis-ci.org/noonehos/router)
 [![Dependency Status](https://www.versioneye.com/user/projects/588f90c1760ce6003a4ea676/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/588f90c1760ce6003a4ea676)
-[![Total Downloads](https://img.shields.io/packagist/dt/memcrab/router.svg)](https://packagist.org/packages/memcrab/router)
+[![Total Downloads](https://poser.pugx.org/memcrab/router/downloads)](https://packagist.org/packages/memcrab/router)
 [![Latest Stable Version](https://poser.pugx.org/memcrab/router/version)](https://packagist.org/packages/memcrab/router)
+[![Latest Unstable Version](https://poser.pugx.org/memcrab/router/v/unstable)](//packagist.org/packages/memcrab/router)
+[![License](https://poser.pugx.org/memcrab/router/license)](https://packagist.org/packages/memcrab/router)
+[![composer.lock available](https://poser.pugx.org/memcrab/router/composerlock)](https://packagist.org/packages/memcrab/router)
 
 
 It's php router based on yaml configuration file and support regular expressions in each route condition. 
