@@ -9,13 +9,14 @@
             "email": "a.diudiun@gmail.com"
         }
     ],
+    "type": "package",
     "repositories": [
         {
-            "type": "vcs",
-            "url": "https://github.com/noonehos/router"
+            "type": "git",
+            "url": "git://github.com/noonehos/router",
+            "reference": "master"
         }
     ],
-    "type": "project",
     "require": {
 		"php": ">=7.0",
         "ext-yaml": ">=2.0.0"
