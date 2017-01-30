@@ -4,8 +4,6 @@ PHP Router as Composer Library
 [![Build Status](https://travis-ci.org/noonehos/router.svg?branch=master)](https://travis-ci.org/noonehos/router)
 [![Dependency Status](https://www.versioneye.com/user/projects/588f90c1760ce6003a4ea676/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/588f90c1760ce6003a4ea676)
 [![Total Downloads](https://img.shields.io/packagist/dt/memcrab/router.svg)](https://packagist.org/packages/memcrab/router)
-[![Latest Stable Version](https://img.shields.io/packagist/v/memcrab/router.svg)](https://packagist.org/packages/memcrab/router)
-
 [![Latest Stable Version](https://poser.pugx.org/memcrab/router/version)](https://packagist.org/packages/memcrab/router)
 
 
