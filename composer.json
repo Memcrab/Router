@@ -1,5 +1,6 @@
 {
     "name": "memcrab/router",
+    "version": "1.0.0",
     "description": "PHP Router based on memCrab Core API",
     "keywords": ["router", "php", "yaml", "RegExp", "expressions"],
     "license": "MIT",
@@ -10,12 +11,6 @@
         }
     ],
     "type": "package",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/noonehos/router"
-        }
-    ],
     "require": {
 		"php": ">=7.0",
         "ext-yaml": ">=2.0.0"
