@@ -6,6 +6,9 @@ PHP Router as Composer Library
 [![Total Downloads](https://img.shields.io/packagist/dt/memcrab/router.svg)](https://packagist.org/packages/memcrab/router)
 [![Latest Stable Version](https://img.shields.io/packagist/v/memcrab/router.svg)](https://packagist.org/packages/memcrab/router)
 
+[![Latest Stable Version](https://poser.pugx.org/memcrab/router/version)](https://packagist.org/packages/memcrab/router)
+
+
 It's php router based on yaml configuration file and support regular expressions in each route condition. 
 Thats help build more accurate routes with only numbers in part of url or with required part of word etc.
 
