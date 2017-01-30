@@ -1,8 +1,8 @@
 {
     "name": "memcrab/router",
-    "description": "Router for memCrab Core API",
-    "keywords": ["router", "composer", "package"],
-    "license": "DBAD",
+    "description": "PHP Router based on memCrab Core API",
+    "keywords": ["router", "php", "yaml", "RegExp", "expressions"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Oleksandr Diudiun",
