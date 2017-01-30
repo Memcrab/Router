@@ -31,19 +31,45 @@ Dependencies
 Usage
 --------
 - init Router with: `memCrab\Router(string $filePath, string $errorServiceName)`
--- $filePath - Path to yaml files with routes
--- $errorServiceName - Class that will run on any exception
+	- $filePath - Path to yaml files with routes
+	- $errorServiceName - Class that will run on any exception
 - run matching: `matchRoute(string $url, string $method)`
--- $url - URL or request URI of page
--- $method - http request method
+	- $url - URL or request URI of page
+	- $method - http request method
 - use your router data with:
--- getService() - return component that we call
--- getAction() - return action that will be run from component
--- getParams() - return route regExp params
--- getErrorMessage() - return error message of internal exception
--- getErrorServiceName() - return error Class that will run on any exception
+	- getService() - return component that we call
+	- getAction() - return action that will be run from component
+	- getParams() - return route regExp params
+	- getErrorMessage() - return error message of internal exception
+	- getErrorServiceName() - return error Class that will run on any exception
 
-Simple Example
+Yaml Config Example
+--------
+```yaml
+routes:
+  /:
+    GET:
+      route: [Index, getMain]
+  /post/:
+    GET:
+        route: [Post, get]
+    POST:
+        route: [Post, add]
+    PATCH:
+        route: [Post, save]
+    DELETE:
+        route: [Post, delete]
+  /post/publish/:
+    POST:
+      route: [Post, setPublishing]
+  /catalog/([a-zA-Z0-9]+)-([a-zA-Z0-9]+)/: 
+    GET: 
+      route: [Catalog, filter]
+      matches: [key1, value1]
+```
+
+
+Run Example
 --------
 ```php
 require_once __DIR__ . "/vendor/autoload.php";
