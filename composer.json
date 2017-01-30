@@ -1,6 +1,6 @@
 {
-    "name": "memCrab/router",
-    "description": "Tool for memCrab Core API",
+    "name": "memcrab/router",
+    "description": "Router for memCrab Core API",
     "keywords": ["router", "composer", "package"],
     "license": "DBAD",
     "authors": [
