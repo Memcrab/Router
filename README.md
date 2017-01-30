@@ -12,7 +12,7 @@ Features
 * Support RegExp in any kind of route
 * All configurations in simple YAML file
 * Each route can return already named params (as many params as you want, or as you have in Regular Expression)
-* High performance yaml parse throw updated pecl yaml-ext 2.0.0 for php 7.0
+* High performance yaml parse throw using updated pecl yaml-ext 2.0.0 for php 7.0
 * Strict standart coding with full Typing of params and returns (by php 7.1)
 * PSR-4 autoloading compliant structure
 * Unit-Testing with PHPUnit
