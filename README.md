@@ -10,6 +10,8 @@ Features
 --------
 
 * Support RegExp in any kind of route
+* Support multiple routings for single url throw different request methods (POST, GET, PUT, DELETE, ...)
+* Support full url or just requets uri
 * All configurations in simple YAML file
 * Each route can return already named params (as many params as you want, or as you have in Regular Expression)
 * High performance yaml parse throw using updated pecl yaml-ext 2.0.0 for php 7.0

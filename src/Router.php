@@ -23,8 +23,9 @@ class Router {
 		$this->routes = $result['routes'];
 	}
 
-	public function matchRoute(string $requestUri, string $method) : void {
+	public function matchRoute(string $url, string $method) : void {
 		try {
+			$requestUri = parse_url($url)['path'];
 			foreach ($this->routes as $regExpString => $route) {
 				$routes = 0;
 				$result = preg_match("/^" . str_replace("/", "\/", $regExpString) . "$/u", $requestUri, $matches);

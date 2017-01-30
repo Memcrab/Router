@@ -26,19 +26,17 @@ class RouterTest extends PHPUnit_Framework_TestCase {
     unset($this->yaml);
   }
   
-  //TODO check to file example exist
-  //TODO check to result of file an array
-
   public function routesProvider () {
     return array (
-      array ("/", "GET", "Index", "getMain", null),
-      array ("/post/", "GET", "Post", "get", null),
-      array ("/post/", "POST", "Post", "add", null), 
-      array ("/post/", "PATCH", "Post", "save", null), 
+      array ("http://example.com/", "GET", "Index", "getMain", null),
+      array ("http://example.com/post/", "GET", "Post", "get", null),
+      array ("http://example.com/post/", "POST", "Post", "add", null), 
+      array ("http://example.com/post/", "PATCH", "Post", "save", null), 
+      array ("http://example.com/post/", "DELETE", "Post", "delete", null),
       array ("/post/", "DELETE", "Post", "delete", null),
-      array ("/post/publish/", "POST", "Post", "setPublishing", null), 
-      array ("/catalog/brand-nike/", "GET", "Catalog", "filter", array("key1"=>"brand", "value1"=>"nike")),
-      array ("/post/bla-bla/", "get", "Error", "404", null)
+      array ("http://example.com/post/publish/", "POST", "Post", "setPublishing", null), 
+      array ("http://example.com/catalog/brand-nike/", "GET", "Catalog", "filter", array("key1"=>"brand", "value1"=>"nike")),
+      array ("http://example.com/post/bla-bla/", "get", "Error", "404", null)
     ); 
   }
 
@@ -46,7 +44,7 @@ class RouterTest extends PHPUnit_Framework_TestCase {
     $this->assertFileExists(__DIR__ . "/../src/routs.example.yaml", "routs.example.yaml not found");
   }
 
-  public function testSuccessRoutesParsing() {
+  public function testSuccessRoutesFileParsing() {
     $file = yaml_parse_file($this->yaml, 0);
     $this->assertFalse($file === false, "routs.example.yaml has are syntax error.");
     $this->assertArrayHasKey('routes', $file);
