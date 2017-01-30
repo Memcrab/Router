@@ -22,7 +22,7 @@ Features
 
 Install
 --------
-`composer install memcrab/router`
+```composer require memcrab/router```
 
 Dependencies
 --------
