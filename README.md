@@ -33,8 +33,8 @@ Install
 
 Dependencies
 --------
-- php extension YAML:
-  - for Ubuntu/Debian 
+php extension YAML:
+- for Ubuntu/Debian 
 ```
 - apt-get update
 - apt-get install php-pear
@@ -44,7 +44,7 @@ Dependencies
 - pecl channel-update pecl.php.net
 - pecl install yaml-2.0.0
 ```
-  - for OS X
+- for OS X
 ```
 - brew install php71 --with-pear
 - brew install autoconf
