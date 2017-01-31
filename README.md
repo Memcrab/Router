@@ -72,24 +72,16 @@ Yaml Config Example
 ```yaml
 routes:
   /:
-    GET:
-      route: [Index, getMain]
+    GET: [Index, getMain]
   /post/:
-    GET:
-        route: [Post, get]
-    POST:
-        route: [Post, add]
-    PATCH:
-        route: [Post, save]
-    DELETE:
-        route: [Post, delete]
+    GET:    [Post, get]
+    POST:   [Post, add]
+    PATCH:  [Post, save]
+    DELETE: [Post, delete]
   /post/publish/:
-    POST:
-      route: [Post, setPublishing]
+    POST: [Post, setPublishing]
   /catalog/([a-zA-Z0-9]+)-([a-zA-Z0-9]+)/: 
-    GET: 
-      route: [Catalog, filter]
-      matches: [key1, value1]
+    GET: [Catalog, filter, key1, value1]
 ```
 
 
