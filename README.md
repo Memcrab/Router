@@ -33,7 +33,8 @@ Install
 
 Dependencies
 --------
-- php extension YAML: 
+- php extension YAML:
+
 ```apt-get update
 
 apt-get install php-pear
