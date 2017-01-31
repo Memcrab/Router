@@ -19,7 +19,7 @@ class Router {
 		$this->errorServiceName = $errorServiceName;
 		$result = yaml_parse_file($filePath, 0);
 		if($result === false) 
-			throw new \Exception("Router can't parse routes from file.", 501);
+			throw new routerException("Router can't parse routes from file.", 501);
 		$this->routes = $result['routes'];
 	}
 
@@ -31,7 +31,7 @@ class Router {
 				$result = preg_match("/^" . str_replace("/", "\/", $regExpString) . "$/u", $requestUri, $matches);
 				if ($result === 0) continue;
 				elseif ($result === false)
-					throw new \Exception("Can't parse route RegExp " . $regExpString, 501);
+					throw new routerException("Can't parse route RegExp " . $regExpString, 501);
 				elseif ($result === 1) {
 					if(isset($route[$method])) {
 						$this->serviceName = $route[$method][0];
@@ -39,7 +39,7 @@ class Router {
 				
 						$paramsCount = count($route[$method]) - 2;
 						if($paramsCount > 0)
-							for($i = 0; $i <= $paramsCount; $i++)
+							for($i = 0; $i < $paramsCount; $i++)
 								$this->params[$route[$method][$i+2]] = $matches[$i + 1];
 						else $this->params = null;
 						
@@ -49,10 +49,10 @@ class Router {
 				}
 			}
 
-			if($routes === 0) throw new \Exception("Not found", 404);
-			if($routes > 1) throw new \Exception("Conflict. Multiple routes found.", 501);
+			if($routes === 0) throw new routerException("Not found", 404);
+			if($routes > 1) throw new routerException("Conflict. Multiple routes found.", 501);
 
-		} catch(\Exception $e) {
+		} catch(routerException $e) {
 			$this->serviceName = $this->errorServiceName;
 			$this->actionName = (string) $e->getCode();
 			$this->errorMessage = $e->getMessage();
@@ -79,3 +79,5 @@ class Router {
 		return $this->errorServiceName;
 	}
 }
+
+class routerException extends \Exception {}

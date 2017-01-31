@@ -1,34 +1,12 @@
-# routes:
-# - /RegExp/Rule/(For|to)/(Maching)/(URL)/:
-#   - METHOD1: # GET|POST|PATCH|DELETE
-#     route: [ServiceName1, actionName1]
-#     matches: [parsedValue1, parsedValue2, ...]
-#   - METHOD2: # GET|POST|PATCH|DELETE
-#     route: [ServiceName2, actionName2]
-#     matches: [parsedValue1, parsedValue2, ...]
-#     options:
-#       requiredVar1: value1
-#       requiredVar2: value2
-#
-# params throw GET (...page/?param1=1&param2=2) always allowed
-
 routes:
   /:
-    GET:
-      route: [Index, getMain]
+    GET: [Index, getMain]
   /post/:
-    GET:
-        route: [Post, get]
-    POST:
-        route: [Post, add]
-    PATCH:
-        route: [Post, save]
-    DELETE:
-        route: [Post, delete]
+    GET:    [Post, get]
+    POST:   [Post, add]
+    PATCH:  [Post, save]
+    DELETE: [Post, delete]
   /post/publish/:
-    POST:
-      route: [Post, setPublishing]
+    POST: [Post, setPublishing]
   /catalog/([a-zA-Z0-9]+)-([a-zA-Z0-9]+)/: 
-    GET: 
-      route: [Catalog, filter]
-      matches: [key1, value1]
+    GET: [Catalog, filter, key1, value1]
