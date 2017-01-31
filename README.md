@@ -34,16 +34,23 @@ Install
 Dependencies
 --------
 - php extension YAML:
-
-```
- - apt-get update
- - apt-get install php-pear
- - apt-get install php-dev
- - apt-get install php-xml php7.0-xml
- - apt-get install libyaml-dev
- - pecl channel-update pecl.php.net
- - pecl install yaml-2.0.0
-```
+  - for Ubuntu/Debian 
+    ```
+     - apt-get update
+     - apt-get install php-pear
+     - apt-get install php-dev
+     - apt-get install php-xml php7.0-xml
+     - apt-get install libyaml-dev
+     - pecl channel-update pecl.php.net
+     - pecl install yaml-2.0.0
+    ```
+  - for OS X
+    ```
+    - brew install php71 --with-pear
+    - brew install autoconf
+    - touch $(brew --prefix php71)/lib/php/.lock && chmod 0644 $(brew --prefix php71)/lib/php/.lock
+    - pecl install yaml-2.0.0
+    ```
 
 Usage
 --------

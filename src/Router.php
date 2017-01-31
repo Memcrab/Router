@@ -34,12 +34,13 @@ class Router {
 					throw new \Exception("Can't parse route RegExp " . $regExpString, 501);
 				elseif ($result === 1) {
 					if(isset($route[$method])) {
-						$this->serviceName = $route[$method]['route'][0];
-						$this->actionName = $route[$method]['route'][1];
+						$this->serviceName = $route[$method][0];
+						$this->actionName = $route[$method][1];
 				
-						if(isset($route[$method]['matches']))
-							foreach ($route[$method]['matches'] as $matchKey => $paramName)
-								$this->params[$paramName] = $matches[$matchKey + 1];
+						$paramsCount = count($route[$method]) - 2;
+						if($paramsCount > 0)
+							for($i = 0; $i <= $paramsCount; $i++)
+								$this->params[$route[$method][$i+2]] = $matches[$i + 1];
 						else $this->params = null;
 						
 						$routes++;
