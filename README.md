@@ -33,7 +33,14 @@ Install
 
 Dependencies
 --------
-- php extension YAML: `pecl install yaml-2.0.0`
+- php extension YAML: 
+```apt-get update
+apt-get install php-pear
+apt-get install php-dev
+apt-get install php-xml php7.0-xml
+apt-get install libyaml-dev
+pecl channel-update pecl.php.net
+pecl install yaml-2.0.0```
 
 Usage
 --------
