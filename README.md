@@ -42,7 +42,8 @@ Dependencies
  - apt-get install php-xml php7.0-xml
  - apt-get install libyaml-dev
  - pecl channel-update pecl.php.net
- - pecl install yaml-2.0.0```
+ - pecl install yaml-2.0.0
+```
 
 Usage
 --------
