@@ -1,6 +1,5 @@
 {
     "name": "memcrab/router",
-    "version": "1.0.1",
     "description": "PHP Router based on memCrab Core API",
     "keywords": ["router", "php", "yaml", "RegExp", "expressions"],
     "homepage": "http://memcrab.com",
