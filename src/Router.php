@@ -18,7 +18,7 @@ class Router {
 	function __construct(string $filePath, string $errorServiceName) {
 		$this->errorServiceName = $errorServiceName;
 		
-		if(file_exists($filePath)) 
+		if(!file_exists($filePath)) 
 			throw new RouterException("Router can't find routes file.", 501);
 
 		$result = yaml_parse_file($filePath, 0);
