@@ -54,18 +54,16 @@ php extension YAML:
 
 Usage
 --------
-- init Router with: `memCrab\Router(string $filePath, string $errorServiceName)`
+- init Router: `memCrab\Router()`
+- load routes: `->loadRoutesFromYaml(string $filePath)`
 	- $filePath - Path to yaml files with routes
-	- $errorServiceName - Class that will run on any exception
-- run matching: `matchRoute(string $url, string $method)`
-	- $url - URL or request URI of page
+- run matching: `->matchRoute(string $url, string $method)`
+	- $url - URL (`http://example.com/posts`) or just request URI of page (`/post`)
 	- $method - http request method
 - use your router data with:
 	- getService() - return component that we call
 	- getAction() - return action that will be run from component
 	- getParams() - return route regExp params
-	- getErrorMessage() - return error message of internal exception
-	- getErrorServiceName() - return error Class that will run on any exception
 
 Yaml Config Example
 --------
@@ -88,16 +86,32 @@ routes:
 Run Example
 --------
 ```php
-require_once __DIR__ . "/vendor/autoload.php";
+require_once __DIR__ . "/../vendor/autoload.php";
 
-# Initialize Router
-$Router = new \memCrab\Router("../src/routs.example.yaml", "Error");
-$Router->matchRoute($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
+use memCrab\Router\Router;
+use memCrab\Router\RouterException;
 
-# Run your Controller|Service|Component
-$Service = new $Router->getSrvice();
-$Action = $Router->getAction();
-$Service->$Action($Router->getParams());
+try {
+  # Initialize Router
+  $Router = new Router();
+  $Router->loadRoutesFromYaml("../src/routs.example.yaml");
+  
+  # Routing
+  $Router->matchRoute("http://example.com/post/", "POST");    
+  
+  # Run your Controller|Service|Component
+  $ServiceName = $Router->getService();
+  $Service = new $ServiceName();
+  $Action = $Router->getAction();
+  $Response = $Service->$Action($Router->getParams());
+}
+catch(RouterException $error){
+  $Respose = new \Response();
+  $Respose->setErrorResponse($error);
+}
+
+$Respose->sendHeaders();
+$Respose->sendContent();
 ```
 
 ## TODOS
