@@ -1,6 +1,6 @@
 <?php 
 declare(strict_types=1);
-namespace memCrab;
+namespace memCrab\Router;
 
 /**
 *  Router for core project
@@ -79,5 +79,3 @@ class Router {
 		return $this->errorServiceName;
 	}
 }
-
-class routerException extends \Exception {}
