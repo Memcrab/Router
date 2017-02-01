@@ -106,12 +106,12 @@ try {
   $Response = $Service->$Action($Router->getParams());
 }
 catch(RouterException $error){
-  $Respose = new \Response();
-  $Respose->setErrorResponse($error);
+  $Response = new \YourResponseClass();
+  $Response->setErrorResponse($error);
 }
 
-$Respose->sendHeaders();
-$Respose->sendContent();
+$Response->sendHeaders();
+$Response->sendContent();
 ```
 
 ## TODOS
