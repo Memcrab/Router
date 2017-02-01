@@ -15,7 +15,7 @@ class RouterTest extends PHPUnit_Framework_TestCase {
 
   protected function setUp() {
     $this->yaml = __DIR__ . "/../src/routs.example.yaml"; 
-    $this->Router = new memCrab\Router(
+    $this->Router = new memCrab\Router\Router(
       $this->yaml, 
       "Error"
     );
