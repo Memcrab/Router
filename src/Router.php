@@ -63,7 +63,7 @@ class Router {
 	}
 
 	public function getParams() : ?array {
-		return (empty($this->params)? []:$this->params;
+		return (empty($this->params))? []:$this->params;
 	}
 
 	public function getService() : string {
