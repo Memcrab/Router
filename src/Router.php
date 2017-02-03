@@ -18,7 +18,6 @@ class Router {
 	function __construct() {}
 
 	public function loadRoutesFromYaml(string $filePath) {
-		clearstatcache();
 		if(file_exists($filePath) === false)
 			throw new RouterException(_("Router can't find routes file."), 501);
 		if(is_readable($filePath) === false)
