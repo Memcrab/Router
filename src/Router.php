@@ -51,7 +51,6 @@ class Router {
 					if($paramsCount > 0)
 						for($i = 0; $i < $paramsCount; $i++)
 							$this->params[$route[$method][$i+2]] = $matches[$i + 1];
-					else $this->params = null;
 					
 					$routes++;
 					break;
@@ -64,7 +63,7 @@ class Router {
 	}
 
 	public function getParams() : ?array {
-		return $this->params;
+		return (empty($this->params))? []:$this->params;
 	}
 
 	public function getService() : string {
