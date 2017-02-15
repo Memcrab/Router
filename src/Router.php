@@ -51,9 +51,13 @@ class Router {
 					$this->actionName = $route[$method][1];
 
 					$paramsCount = count($route[$method]) - 2;
-					if($paramsCount > 0)
-						for($i = 0; $i < $paramsCount; $i++)
-							$this->params[$route[$method][$i+2]] = $matches[$i + 1];
+					if($paramsCount > 0){
+						for($i = 0; $i < $paramsCount; $i++){
+							if (preg_match("/^([$])([0-9]+)$/", $route[$method][$i+2],$matches2))
+                						$this->params[$matches[$matches2[2]]] = $matches[$i + 2];
+              						else
+						                $this->params[$route[$method][$i+2]] = $matches[$i + 1];
+					}
 					else $this->params = null;
 
 					$routes++;
