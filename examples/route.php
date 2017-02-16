@@ -16,7 +16,7 @@ try {
 
 	# Routing
 	$Router->matchRoute("http://example.com/post/", "POST");
-
+	exit();
 	# Run your Controller|Service|Component
 	$ServiceName = $Router->getService();
 	$Service = new $ServiceName();
