@@ -1,12 +1,11 @@
-routes:
-  /:
-    GET: [Index, getMain]
-  /post/:
-    GET:    [Post, get]
-    POST:   [Post, add]
-    PATCH:  [Post, save]
-    DELETE: [Post, delete]
-  /post/publish/:
-    POST: [Post, setPublishing]
-  /catalog/([a-zA-Z0-9]+)-([a-zA-Z0-9]+)/: 
-    GET: [Catalog, filter, key1, value1]
+/:
+  GET: [Index, getMain]
+/post/:
+  GET:    [Post, get]
+  POST:   [Post, add]
+  PATCH:  [Post, save]
+  DELETE: [Post, delete]
+/post/publish/:
+  POST: [Post, setPublishing]
+/catalog/([a-zA-Z0-9]+)-([a-zA-Z0-9]+)/: 
+  GET: [Catalog, filter, key1, value1]

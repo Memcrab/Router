@@ -1,5 +1,4 @@
-{
-    "name": "memcrab/router",
+   "name": "memcrab/router",
     "description": "PHP Router based on memCrab Core API",
     "keywords": ["router", "php", "yaml", "RegExp", "expressions"],
     "homepage": "http://memcrab.com",
