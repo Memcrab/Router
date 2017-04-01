@@ -1,5 +1,5 @@
 /:
-  GET: [Index, getMain]
+  GET: [Index, get]
 /post/:
   GET:    [Post, get]
   POST:   [Post, add]
