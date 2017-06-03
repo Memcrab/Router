@@ -13,7 +13,7 @@
     "type": "package",
     "require": {
 		"php": ">=7.1",
-        "memcrab/exceptions": "1.*.*"
+        "memcrab/exceptions": "dev-master"
     },
 	"require-dev": {
 		"phpunit/phpunit": "6.*.*"
