@@ -68,50 +68,64 @@ Usage
 Yaml Config Example
 --------
 ```yaml
-routes:
-  /:
-    GET: [Index, getMain]
-  /post/:
-    GET:    [Post, get]
-    POST:   [Post, add]
-    PATCH:  [Post, save]
-    DELETE: [Post, delete]
-  /post/publish/:
-    POST: [Post, setPublishing]
-  /catalog/([a-zA-Z0-9]+)-([a-zA-Z0-9]+)/: 
-    GET: [Catalog, filter, key1, value1]
+/:
+  GET: [Index, getMain]
+/post/:
+  GET:    [Post, get]
+  POST:   [Post, add]
+  PATCH:  [Post, save]
+  DELETE: [Post, delete]
+/post/publish/:
+  POST: [Post, setPublishing]
+/catalog/([a-zA-Z0-9]+)-([a-zA-Z0-9]+)/: 
+  GET: [Catalog, filter, key1, value1]
 ```
 
 
 Run Example
 --------
 ```php
-require_once __DIR__ . "/../vendor/autoload.php";
+<?php
+declare (strict_types = 1);
+require_once __DIR__ . "/vendor/autoload.php";
 
+use memCrab\Exceptions\FileException;
+use memCrab\Exceptions\RoutingException;
+use memCrab\File\Yaml;
 use memCrab\Router\Router;
-use memCrab\Router\RouterException;
 
 try {
+  # Read routes from yaml
+  $Yaml = new Yaml();
+
+  $routes = $Yaml->load("../src/routs.example.yaml", null)->getContent();
+
+  # For enable cache You can use FileCache object as second parametr of
+  # $Yaml->load() function. Use memCrab\Cache library for it.
+  # Redis Cache: $FileCache = new RedisCache([Redis obj]);
+  # PHP file Cache: $FileCache = new PHPCache([PathToTMLFolder]);
+
   # Initialize Router
   $Router = new Router();
-  $Router->loadRoutesFromYaml("../src/routs.example.yaml");
-  
+  $Router->loadRoutes($routes);
+
   # Routing
-  $Router->matchRoute("http://example.com/post/", "POST");    
-  
+  $Router->matchRoute("http://example.com/post/", "POST");
   # Run your Controller|Service|Component
   $ServiceName = $Router->getService();
+  $ActionName = $Router->getAction();
   $Service = new $ServiceName();
-  $Action = $Router->getAction();
   $Response = $Service->$Action($Router->getParams());
-}
-catch(RouterException $error){
-  $Response = new \YourResponseClass();
-  $Response->setErrorResponse($error);
+} catch (RoutingException $error) {
+  $Respose = new \Response();
+  $Respose->setErrorResponse($error);
+} catch (FileException $error) {
+  $Respose = new \Response();
+  $Respose->setErrorResponse($error);
 }
 
-$Response->sendHeaders();
-$Response->sendContent();
+$Respose->sendHeaders();
+$Respose->sendContent();
 ```
 
 ## TODOS

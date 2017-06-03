@@ -11,7 +11,7 @@ use memCrab\Router\Router;
  *
  *  @author Oleksandr Diudiun
  */
-class RouterTest extends PHPUnit_Framework_TestCase {
+class RouterTest extends \PHPUnit\Framework\TestCase {
 	protected $Router;
 	protected $yaml;
 
