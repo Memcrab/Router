@@ -70,7 +70,6 @@ class Router {
 		if ($routes > 1) {
 			throw new RoutingException(_("Conflict. Multiple routes found."), 501);
 		}
-
 	}
 
 	public function getParams():  ? array{
