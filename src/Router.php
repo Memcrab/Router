@@ -26,8 +26,8 @@ class Router {
 		$this->routes = $routes;
 	}
 
-	public function matchRoute(string $url, string $method): void{
-		$url = parse_url($url);
+	public function matchRoute(string $rawUrl, string $method): void{
+		$url = parse_url($rawUrl);
 		if (!isset($url['path']) || is_string($url['path']) === false) {
 			throw new RoutingException(_("Router can't parse request."), 400);
 		}
@@ -42,7 +42,7 @@ class Router {
 			if ($result === 0) {
 				continue;
 			} elseif ($result === false) {
-				throw new RoutingException(_("Can't parse route RegExp.") . $regExpString, 501);
+				throw new RoutingException(_("Can't parse route RegExp. ") . $regExpString, 501);
 			} elseif ($result === 1) {
 				if (isset($route[$method])) {
 					$this->serviceName = $route[$method][0];
@@ -64,7 +64,7 @@ class Router {
 		}
 
 		if ($routes === 0) {
-			throw new RoutingException(_("Not found"), 404);
+			throw new RoutingException(_("Not found route: ") . $method . " " . $rawUrl, 404);
 		}
 
 		if ($routes > 1) {
