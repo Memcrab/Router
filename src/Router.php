@@ -1,5 +1,4 @@
-<?php
-declare (strict_types = 1);
+<?php declare (strict_types = 1);
 namespace memCrab\Router;
 use memCrab\Exceptions\RoutingException;
 
@@ -54,7 +53,7 @@ class Router {
 							$this->params[$route[$method][$i + 2]] = $matches[$i + 1];
 						}
 					} else {
-						$this->params = null;
+						$this->params = array();
 					}
 
 					$routes++;
