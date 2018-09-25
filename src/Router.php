@@ -25,7 +25,7 @@ class Router {
 		$this->routes = $routes;
 	}
 
-	public function matchRoute(string $rawUrl, string $method): void{
+	public function matchRoute(string $rawUrl, string $method): array{
 		$url = parse_url($rawUrl);
 		if (!isset($url['path']) || is_string($url['path']) === false) {
 			throw new RoutingException(_("Router can't parse request."), 400);
@@ -34,7 +34,7 @@ class Router {
 		if (!is_array($this->routes)) {
 			throw new RoutingException(_("Can't find any routes rules."), 501);
 		}
-
+		$params = [];
 		foreach ($this->routes as $regExpString => $route) {
 			$routes = 0;
 			$result = preg_match("/^" . str_replace("/", "\/", $regExpString) . "$/u", $url['path'], $matches);
@@ -50,10 +50,10 @@ class Router {
 					$paramsCount = count($route[$method]) - 2;
 					if ($paramsCount > 0) {
 						for ($i = 0; $i < $paramsCount; $i++) {
-							$this->params[$route[$method][$i + 2]] = $matches[$i + 1];
+							$params[$route[$method][$i + 2]] = $matches[$i + 1];
 						}
 					} else {
-						$this->params = array();
+						$params = array();
 					}
 
 					$routes++;
@@ -69,6 +69,7 @@ class Router {
 		if ($routes > 1) {
 			throw new RoutingException(_("Conflict. Multiple routes found."), 501);
 		}
+		return $params;
 	}
 
 	public function getParams():  ? array{
