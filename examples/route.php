@@ -36,6 +36,7 @@ try {
 } catch (FileException $error) {
 	$Respose = new \Response();
 	$Respose->setErrorResponse($error);
+#  test here
 }
 
 $Respose->sendHeaders();
