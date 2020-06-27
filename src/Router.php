@@ -8,20 +8,14 @@ use memCrab\Exceptions\RoutingException;
  *  @author Oleksandr Diudiun
  */
 class Router {
+    private $requestsCounter = 0;
+    
     private $routes;
-    private $params;
-    private $actionName;
-    private $serviceName;
-    private $errorMessage;
-    private $errorServiceName;
+    private $data;
+    private $time;
 
-    function __construct(array $data = []) {
-        $this->serviceName = $data['serviceName'] ?? null;
-        $this->actionName = $data['actionName'] ?? null;
-        $this->params = $data['params'] ?? null;
-        $this->routes = [];
-    }
-
+    function __construct() {}
+    
     public function loadRoutes(array $routes) {
         if (empty($routes)) {
             throw new RoutingException(_("Empty routes"), 1);
@@ -30,7 +24,9 @@ class Router {
         $this->routes = $routes;
     }
 
-    public function disposeData(string $rawUrl, string $method) {
+    public function setRouteDataByHash(string $rawUrl, string $method, int $seconds):  ? string{
+        $requestsCounter++;
+        
         $url = parse_url($rawUrl);
         $routeData = [];
 
@@ -75,26 +71,38 @@ class Router {
             throw new RoutingException(_("Route not found."), 501);
         }
 
-        return new Router($routeData);
+        $hash = $routeData['serviceName']."_".$routeData['actionName']."_".$requestsCounter;
+        $this->data[$hash] = $routeData;
+        $this->timer[$hash] = time() + (int) $seconds;
+
+        return $hash;
     }
 
-    public function getParams():  ? array{
-        return $this->params;
+    public function getParams(string $key):  ? array{
+        return !empty($this->data[$key]["params"]) ? $this->data[$key]["params"] : [];
     }
 
-    public function getService() : string {
-        return $this->serviceName;
+    public function getService(string $key) : string {
+        return !empty($this->data[$key]["serviceName"]) ? $this->data[$key]["serviceName"] : "";
     }
 
-    public function getAction():  ? string {
-        return $this->actionName;
+    public function getAction(string $key):  ? string {
+        return !empty($this->data[$key]["actionName"]) ? $this->data[$key]["actionName"] : "";
     }
 
-    public function getErrorServiceName() : string {
-        return $this->errorServiceName;
+    public function getErrorServiceName(string $key) : string {
+        return !empty($this->data[$key]["errorServiceName"]) ? $this->data[$key]["errorServiceName"] : "";
     }
 
-    public function getErrorMessage():  ? string {
-        return $this->errorMessage;
+    public function getErrorMessage(string $key):  ? string {
+        return !empty($this->data[$key]["errorMessage"]) ? $this->data[$key]["errorMessage"] : "";
+    }
+    
+    public function deleteExpiredData(){
+        foreach($this->timer as $time => $hash){
+            if($time < time()){
+                unset($data[$hash]);
+            }
+        }
     }
 }
