@@ -24,12 +24,12 @@ try {
 	$Router->loadRoutes($routes);
 
 	# Routing
-	$Router = $Router->disposeData("http://example.com/post/", "POST");
+	$RouterHash = $Router->setRouteDataByHash("http://example.com/post/", "POST");
 	# Run your Controller|Service|Component
-	$ServiceName = $Router->getService();
-	$ActionName = $Router->getAction();
+	$ServiceName = $Router->getService($RouterHash);
+	$ActionName = $Router->getAction($RouterHash);
 	$Service = new $ServiceName();
-	$Response = $Service->$Action($Router->getParams());
+	$Response = $Service->$Action($Router->getParams($RouterHash));
 } catch (RoutingException $error) {
 	$Respose = new \Response();
 	$Respose->setErrorResponse($error);
