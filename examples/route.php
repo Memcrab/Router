@@ -24,7 +24,7 @@ try {
 	$Router->loadRoutes($routes);
 
 	# Routing
-	$Router = $Router->disposeData("http://example.com/post/", "POST");
+	$Router = $Router->getHandledRouter("http://example.com/post/", "POST");
 	# Run your Controller|Service|Component
 	$ServiceName = $Router->getService();
 	$ActionName = $Router->getAction();
