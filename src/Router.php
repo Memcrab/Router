@@ -30,7 +30,7 @@ class Router {
         $this->routes = $routes;
     }
 
-    public function disposeData(string $rawUrl, string $method) {
+    public function getHandledRouter(string $rawUrl, string $method):  ? self{
         $url = parse_url($rawUrl);
         $routeData = [];
 
@@ -75,26 +75,26 @@ class Router {
             throw new RoutingException(_("Route not found."), 501);
         }
 
-        return new Router($routeData);
+        return new self($routeData);
     }
 
-    public function getParams():  ? array{
+    public function getParams(): ? array{
         return $this->params;
     }
 
-    public function getService() : string {
+    public function getService(): ? string{
         return $this->serviceName;
     }
 
-    public function getAction():  ? string {
+    public function getAction(): ? string{
         return $this->actionName;
     }
 
-    public function getErrorServiceName() : string {
+    public function getErrorServiceName(): ? string{
         return $this->errorServiceName;
     }
 
-    public function getErrorMessage():  ? string {
+    public function getErrorMessage(): ? string {
         return $this->errorMessage;
     }
 }
