@@ -8,8 +8,8 @@ use memCrab\Exceptions\RoutingException;
  *  @author Oleksandr Diudiun
  */
 class Router {
-    protected static $instance = array();
-    private $routes;
+    protected static $routes;
+    
     private $params;
     private $actionName;
     private $serviceName;
@@ -18,34 +18,20 @@ class Router {
 
     private function __clone() {}
     private function __wakeup() {}
-    private function __construct(string $serviceName = null, string $actionName = null, array $params = [], array &$routes = []) {
+    private function __construct(string $serviceName = null, string $actionName = null, array $params = []) {
         $this->serviceName = $serviceName;
         $this->actionName = $actionName;
         $this->params = $params;
-        $this->routes = $routes;
     }
 
-    public function loadRoutes(array $routes) {
+    public static function loadRoutes(array $routes, string $environment) {
         if (empty($routes)) {
-            throw new RoutingException(_("Empty routes"), 1);
+            throw new RoutingException(_("Empty routes"), 501);
         }
-
-        $this->routes = $routes;
+        self::$routes[$environment] = $routes;
     }
 
-    public static function obj($environment) {
-        if (trim($environment) != "") {
-            if (!isset(self::$instance[$environment])) {
-                self::$instance[$environment] = new self($environment);
-            }
-            return self::$instance[$environment];
-        } else {
-            die("Некорректная среда");
-        }
-
-    }
-
-    public function getHandledRouter(string $rawUrl, string $method):  ? self{
+    public static function getHandledRouter(string $rawUrl, string $method, string $environment):  ? self{
         $url = parse_url($rawUrl);
         $routeData = [];
 
@@ -53,13 +39,12 @@ class Router {
             throw new RoutingException(_("Router can't parse request."), 400);
         }
 
-        if (!is_array($this->routes)) {
+        if (!empty(self::$routes[$environment]) && !is_array(self::$routes[$environment])) {
             throw new RoutingException(_("Can't find any routes rules."), 501);
         }
 
         $routesCount = 0;
-
-        foreach ($this->routes as $regExpString => $route) {
+        foreach (self::$routes[$environment] as $regExpString => $route) {
             $result = preg_match("/^" . str_replace("/", "\/", $regExpString) . "$/u", $url['path'], $matches);
             if ($result === 0) {
                 continue;
@@ -90,7 +75,7 @@ class Router {
             throw new RoutingException(_("Route not found."), 501);
         }
 
-        return new self($routeData['serviceName'], $routeData['actionName'], $routeData['params'], &$this->routes);
+        return new self($routeData['serviceName'], $routeData['actionName'], $routeData['params']);
     }
 
     public function getParams(): ? array{
