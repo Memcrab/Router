@@ -8,6 +8,7 @@ use memCrab\Exceptions\RoutingException;
  *  @author Oleksandr Diudiun
  */
 class Router {
+    protected static $instance = array();
     private $routes;
     private $params;
     private $actionName;
@@ -15,11 +16,13 @@ class Router {
     private $errorMessage;
     private $errorServiceName;
 
-    function __construct(array $data = []) {
-        $this->serviceName = $data['serviceName'] ?? null;
-        $this->actionName = $data['actionName'] ?? null;
-        $this->params = $data['params'] ?? null;
-        $this->routes = [];
+    private function __clone() {}
+    private function __wakeup() {}
+    private function __construct(string $serviceName = null, string $actionName = null, array $params = [], array &$routes = []) {
+        $this->serviceName = $serviceName;
+        $this->actionName = $actionName;
+        $this->params = $params;
+        $this->routes = $routes;
     }
 
     public function loadRoutes(array $routes) {
@@ -28,6 +31,18 @@ class Router {
         }
 
         $this->routes = $routes;
+    }
+
+    public static function obj($environment) {
+        if (trim($environment) != "") {
+            if (!isset(self::$instance[$environment])) {
+                self::$instance[$environment] = new self($environment);
+            }
+            return self::$instance[$environment];
+        } else {
+            die("Некорректная среда");
+        }
+
     }
 
     public function getHandledRouter(string $rawUrl, string $method):  ? self{
@@ -75,7 +90,7 @@ class Router {
             throw new RoutingException(_("Route not found."), 501);
         }
 
-        return new self($routeData);
+        return new self($routeData['serviceName'], $routeData['actionName'], $routeData['params'], &$this->routes);
     }
 
     public function getParams(): ? array{
