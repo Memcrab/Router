@@ -16,9 +16,9 @@ class Router {
     private $errorMessage;
     private $errorServiceName;
 
-    private function __clone() {}
-    private function __wakeup() {}
-    private function __construct(string $serviceName = null, string $actionName = null, array $params = []) {
+    public function __clone() {}
+    public function __wakeup() {}
+    public function __construct(string $serviceName = null, string $actionName = null, array $params = []) {
         $this->serviceName = $serviceName;
         $this->actionName = $actionName;
         $this->params = $params;
