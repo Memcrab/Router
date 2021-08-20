@@ -20,7 +20,7 @@
     },
 	"autoload": {
         "psr-4": {
-            "memCrab\\Router\\": "src/"
+            "Memcrab\\Router\\": "src/"
         }
     }
 }

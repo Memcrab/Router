@@ -1,6 +1,6 @@
 <?php declare (strict_types = 1);
-namespace memCrab\Router;
-use memCrab\Exceptions\RoutingException;
+namespace Memcrab\Router;
+use Memcrab\Router\RoutingException;
 
 /**
  *  Router for core project
